@@ -1,0 +1,1 @@
+print("this is shared between host and docker")
