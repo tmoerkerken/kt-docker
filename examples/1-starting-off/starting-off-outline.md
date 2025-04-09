@@ -94,7 +94,26 @@ print("this is shared between host and docker")
 docker build -t python-print .
 docker run -v .:/app/code python-print
 ```
-> Now your container performs a simple image read and processing check!
+
+**Step 5: reusing images**
+```Dockerfile
+FROM ubuntu:20.04
+RUN apt-get update && \
+    apt-get install -y python3 && \
+    ln -s /usr/bin/python3 /usr/bin/python
+CMD ["python", "--version"]
+
+```
+```Dockerfile
+FROM ubuntu20-with-python
+CMD ["python", "-c", "print('Hello Delmic!')"]
+```
+
+```bash
+docker build -f Dockerfile.base -t ubuntu20-with-python .
+docker build -f Dockerfile.inherit -t ubuntu20-inherit .
+docker run ubuntu20-inherit
+```
 
 **Bonus Tips:**
 - Add `--no-cache` to disable layer reuse and test full builds.

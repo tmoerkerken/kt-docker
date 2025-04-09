@@ -1,0 +1,2 @@
+FROM ubuntu20-with-python
+CMD ["python", "-c", "print('Hello Delmic!')"]
