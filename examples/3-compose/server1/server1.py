@@ -11,5 +11,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     while True:  # Keep the server running to accept multiple connections
         conn, addr = s.accept()
         with conn:
-            print(f"Connected by {addr}")
+            print(f"Connected by {addr}", flush=True)
             conn.sendall(b"Simulated data from Server 1")
